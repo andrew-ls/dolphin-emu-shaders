@@ -31,16 +31,15 @@ DefaultValue = 0.5
 void main()
 {
 	float pxScale = GetOption(PIXEL_SCALE);
-	float alignX = GetOption(ALIGN_X);
-	float alignY = GetOption(ALIGN_Y);
+	float2 align = float2(GetOption(ALIGN_X), GetOption(ALIGN_Y));
 
 	float2 coord = GetCoordinates();
 	float2 res = GetResolution();
 	float2 resInv = GetInvResolution();
 
 	float2 location = float2(
-		(floor(coord.x * res.x / pxScale) * pxScale + (alignX * pxScale)) * resInv.x,
-		(floor(coord.y * res.y / pxScale) * pxScale + (alignY * pxScale)) * resInv.y
+		(floor(coord.x * res.x / pxScale) * pxScale + (align.x * pxScale)) * resInv.x,
+		(floor(coord.y * res.y / pxScale) * pxScale + (align.y * pxScale)) * resInv.y
 	);
 
 	SetOutput(SampleLocation(location));
