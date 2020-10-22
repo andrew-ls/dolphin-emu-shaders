@@ -37,9 +37,8 @@ void main()
 	float2 res = GetResolution();
 	float2 resInv = GetInvResolution();
 
-	float2 location = float2(
-		(floor(coord.x * res.x / pxScale) * pxScale + (align.x * pxScale)) * resInv.x,
-		(floor(coord.y * res.y / pxScale) * pxScale + (align.y * pxScale)) * resInv.y
+	float2 location = (
+		(floor(coord * res / pxScale) * pxScale + (align * pxScale)) * resInv
 	);
 
 	SetOutput(SampleLocation(location));
